@@ -28,17 +28,38 @@ const displayNews = newses => {
     const newsContainer = document.getElementById('news-container');
     newses.forEach(news => {
         const newsDiv = document.createElement('div');
-        newsDiv.classList.add('row', 'mb-4', 'g-0');
+        newsDiv.classList.add('row', 'mb-5', 'g-2', 'p-4', 'border', 'border-light', 'rounded-3', 'shadow');
         newsDiv.innerHTML = `
-    <div class="col-md-4">
-            <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+        <div class="col-md-3">
+        <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
         <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-         </div>
+            <h5 class="card-title">${news.title}</h5>
+            <p class="card-text">${news.details}</p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center p-4">
+            <div class="d-flex">
+                <img class="img-fluid rounded-circle me-3" src="${news.author.img}" width="36px" height="36px">
+                <div class="d-flex flex-column">
+                    <span class="fw-semibold">${news.author.name}</span>
+                    <span>${news.author.published_date}</span>
+                </div>
+            </div>
+            <div>
+                <i class="fa-solid fa-eye"></i> ${news.total_view}
+            </div>
+            <div>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <div>
+                 <i class="fa-solid fa-arrow-right text-primary fs-4"></i>
+            </div>
+        </div>
     </div>
     `;
         newsContainer.appendChild(newsDiv);
