@@ -64,7 +64,7 @@ const displayNews = (newses) => {
                 <i class="fa-regular fa-star"></i>
             </div>
             <div class=" my-3">
-                 <i class="fa-solid fa-arrow-right text-primary fs-4"></i>
+                 <i class="fa-solid fa-arrow-right text-primary fs-4" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
             </div>
         </div>
     </div>
@@ -89,3 +89,7 @@ const toggoleSpinner = isLoading => {
         loaderSection.classList.add('d-none')
     }
 };
+
+// const loadModal = () => {
+//     <button onclick="loadModal('${phone.slug}')" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phoneDetailsModal">Show Details</button>
+// }
