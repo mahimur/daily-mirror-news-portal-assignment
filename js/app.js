@@ -24,12 +24,15 @@ const loadNewsInCategory = async newsId => {
     displayNews(data.data);
 };
 
-const displayNews = newses => {
+const displayNews = (newses) => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
+
+    // category message 
     const categoryMessage = document.getElementById('category-message');
     categoryMessage.classList.add('w-75', 'mx-auto', 'p-4', 'bg-white', 'mb-5', 'fs-5', 'fw-semibold', 'shadow');
     categoryMessage.innerText = `${newses.length} items found for this category`;
+
     newses.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('row', 'mb-5', 'g-2', 'p-4', 'border', 'border-light', 'rounded-3', 'shadow');
