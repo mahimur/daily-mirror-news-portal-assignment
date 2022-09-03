@@ -64,12 +64,30 @@ const displayNews = (newses) => {
                 <i class="fa-regular fa-star"></i>
             </div>
             <div class=" my-3">
-                 <i class="fa-solid fa-arrow-right text-primary fs-4" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                 <i class="fa-solid fa-arrow-right text-primary fs-4" data-bs-toggle="modal" data-bs-target="#newsModal"></i>
             </div>
         </div>
     </div>
     `;
         newsContainer.appendChild(newsDiv);
+
+        // modal title
+        const newsModalTitle = document.getElementById('newsModalLabel');
+        newsModalTitle.innerHTML = `${news.title}`;
+
+        // modal details
+        const newsModalDetails = document.getElementById('news-modal-body');
+        newsModalDetails.innerHTML = `
+        ${news.details}
+        <div class="d-flex  my-3">
+                <img class="img-fluid rounded-circle me-3" src="${news.author.img}" width="36px" height="36px">
+                <div class="d-flex flex-column">
+                    <span class="fw-semibold">${news.author.name}</span>
+                    <span>${news.author.published_date}</span>
+                </div>
+            </div>
+        `;
+
     });
     // stop loader
     toggoleSpinner(false);
