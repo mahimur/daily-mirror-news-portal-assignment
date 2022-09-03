@@ -22,10 +22,14 @@ const loadNewsInCategory = async newsId => {
     const res = await fetch(url);
     const data = await res.json();
     displayNews(data.data);
-}
+};
 
 const displayNews = newses => {
     const newsContainer = document.getElementById('news-container');
+    newsContainer.textContent = '';
+    const categoryMessage = document.getElementById('category-message');
+    categoryMessage.classList.add('w-75', 'mx-auto', 'p-4', 'bg-white', 'mb-5', 'fs-5', 'fw-semibold', 'shadow');
+    categoryMessage.innerText = `${newses.length} items found for this category`;
     newses.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('row', 'mb-5', 'g-2', 'p-4', 'border', 'border-light', 'rounded-3', 'shadow');
@@ -36,27 +40,27 @@ const displayNews = newses => {
     <div class="col-md-9">
         <div class="card-body">
             <h5 class="card-title">${news.title}</h5>
-            <p class="card-text">${news.details}</p>
+            <p id="news-details" class="card-text">${news.details.slice(0, 400)}...</p>
         </div>
-        <div class="d-flex justify-content-between align-items-center p-4">
-            <div class="d-flex">
+        <div class="d-lg-flex d-block text-center justify-content-between align-items-center p-4">
+            <div class="d-flex  my-3">
                 <img class="img-fluid rounded-circle me-3" src="${news.author.img}" width="36px" height="36px">
                 <div class="d-flex flex-column">
                     <span class="fw-semibold">${news.author.name}</span>
                     <span>${news.author.published_date}</span>
                 </div>
             </div>
-            <div>
+            <div class=" my-3">
                 <i class="fa-solid fa-eye"></i> ${news.total_view}
             </div>
-            <div>
+            <div class=" my-3">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-regular fa-star"></i>
             </div>
-            <div>
+            <div class=" my-3">
                  <i class="fa-solid fa-arrow-right text-primary fs-4"></i>
             </div>
         </div>
@@ -64,4 +68,4 @@ const displayNews = newses => {
     `;
         newsContainer.appendChild(newsDiv);
     });
-}
+};
