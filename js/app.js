@@ -10,7 +10,7 @@ const displayNewsCategories = newsCategories => {
         const newsCategoryLi = document.createElement('li');
         newsCategoryLi.classList.add('nav-item');
         newsCategoryLi.innerHTML = `
-          <a onclick="loadNewsInCategory('${newsCategory.category_id}')" class="nav-link active mx-4 fs-5" id="category" aria-current="page"
+          <a onclick="loadNewsInCategory('${newsCategory.category_id}'), startLoader()" class="nav-link active mx-4 fs-5" id="category" aria-current="page"
            href="#">${newsCategory.category_name}</a>
         `;
         newsCategoriesContainer.appendChild(newsCategoryLi);
@@ -68,4 +68,21 @@ const displayNews = newses => {
     `;
         newsContainer.appendChild(newsDiv);
     });
+    // stop loader
+    toggoleSpinner(false);
+};
+
+// handle search button click
+const startLoader = () => {
+    // start loader
+    toggoleSpinner(true);
+};
+
+const toggoleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none');
+    } else {
+        loaderSection.classList.add('d-none')
+    }
 };
