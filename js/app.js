@@ -50,19 +50,19 @@ const displayNews = newses => {
     </div>
     <div class="col-md-9">
         <div class="card-body">
-            <h5 class="card-title">${news.title}</h5>
+            <h5 class="card-title">${news.title ? news.title : 'No data found'}</h5>
             <p id="news-details" class="card-text">${news.details.slice(0, 400)}...</p>
         </div>
         <div class="d-lg-flex d-block text-center justify-content-between align-items-center p-4">
             <div class="d-flex  my-3">
                 <img class="img-fluid rounded-circle me-3" src="${news.author.img}" width="36px" height="36px">
                 <div class="d-flex flex-column">
-                    <span class="fw-semibold">${news.author.name}</span>
-                    <span>${news.author.published_date}</span>
+                    <span class="fw-semibold">${news.author.name ? news.author.name : 'No data found'}</span>
+                    <span>${news.author.published_date ? news.author.published_date : 'No data found'}</span>
                 </div>
             </div>
             <div class=" my-3">
-                <i class="fa-solid fa-eye"></i> ${news.total_view}
+                <i class="fa-solid fa-eye"></i> ${news.total_view ? news.total_view : 'No data found'}
             </div>
             <div class=" my-3">
                 <i class="fa-solid fa-star"></i>
@@ -89,14 +89,13 @@ const displayNews = newses => {
     <div class="d-flex  my-3">
             <img class="img-fluid rounded-circle me-3" src="${news.author.img}" width="36px" height="36px">
             <div class="d-flex flex-column">
-                <span class="fw-semibold">${news.author.name}</span>
-                <span>${news.author.published_date}</span>
+                <span class="fw-semibold">${news.author.name ? news.author.name : 'No data found'}</span>
+                <span>${news.author.published_date ? news.author.published_date : 'No data found'}</span>
             </div>
         </div>
     `;
 
         newsContainer.appendChild(newsDiv);
-
 
     });
     // stop loader
