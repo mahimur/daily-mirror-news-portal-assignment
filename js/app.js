@@ -22,11 +22,19 @@ const loadNewsInCategory = async newsId => {
     const res = await fetch(url);
     const data = await res.json();
     displayNews(data.data);
+    sortNewses(data.data);
 };
 
-const displayNews = (newses) => {
+
+const displayNews = newses => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
+
+
+    // sorting by views
+    newses.sort((a, b) => {
+        return b.total_view - a.total_view;
+    });
 
     // category message 
     const categoryMessage = document.getElementById('category-message');
@@ -69,7 +77,6 @@ const displayNews = (newses) => {
         </div>
     </div>
     `;
-        newsContainer.appendChild(newsDiv);
 
         // modal title
         const newsModalTitle = document.getElementById('newsModalLabel');
@@ -78,15 +85,18 @@ const displayNews = (newses) => {
         // modal details
         const newsModalDetails = document.getElementById('news-modal-body');
         newsModalDetails.innerHTML = `
-        ${news.details}
-        <div class="d-flex  my-3">
-                <img class="img-fluid rounded-circle me-3" src="${news.author.img}" width="36px" height="36px">
-                <div class="d-flex flex-column">
-                    <span class="fw-semibold">${news.author.name}</span>
-                    <span>${news.author.published_date}</span>
-                </div>
+    ${news.details}
+    <div class="d-flex  my-3">
+            <img class="img-fluid rounded-circle me-3" src="${news.author.img}" width="36px" height="36px">
+            <div class="d-flex flex-column">
+                <span class="fw-semibold">${news.author.name}</span>
+                <span>${news.author.published_date}</span>
             </div>
-        `;
+        </div>
+    `;
+
+        newsContainer.appendChild(newsDiv);
+
 
     });
     // stop loader
@@ -107,7 +117,3 @@ const toggoleSpinner = isLoading => {
         loaderSection.classList.add('d-none')
     }
 };
-
-// const loadModal = () => {
-//     <button onclick="loadModal('${phone.slug}')" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phoneDetailsModal">Show Details</button>
-// }
